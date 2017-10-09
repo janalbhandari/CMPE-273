@@ -1,40 +1,37 @@
 '''
 ################################## server.py #############################
-# 
+# Lab1 gRPC RocksDB Server
 ################################## server.py #############################
 '''
 import time
 import grpc
 import datastore_pb2
 import datastore_pb2_grpc
+import uuid
+import rocksdb
 
 from concurrent import futures
 
 _ONE_DAY_IN_SECONDS = 60 * 60 * 24
 
 class MyDatastoreServicer(datastore_pb2.DatastoreServicer):
-    '''
-    '''
-
     def __init__(self):
-        '''
-        '''
-        # TODO
-        print("init")
+        self.db = rocksdb.DB("lab1.db", rocksdb.Options(create_if_missing=True))
 
     def put(self, request, context):
-        '''
-        '''
-        # TODO
         print("put")
-        return None
+        key = uuid.uuid4().hex
+        # TODO - save key and value into DB converting request.data string to utf-8 bytes
+        self.db.put(key.encode('utf-8'), request.data.encode('utf-8'))
+        return datastore_pb2.Response(data=key)
 
     def get(self, request, context):
-        '''
-        '''
-        # TODO
         print("get")
-        return None
+        # TODO - retrieve the value from DB by the given key. Needs to convert request.data string to utf-8 bytes.
+        value = self.db.get(request.data.encode('utf-8'))
+        #value = None
+
+        return datastore_pb2.Response(data=value)
 
 def run(host, port):
     '''
