@@ -1,5 +1,7 @@
 from flask import Flask, request
-import os, json, rocksdb, subprocess, uuid
+import os, json
+import rocksdb, uuid
+import subprocess
 app = Flask(__name__)
 
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
