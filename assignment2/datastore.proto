@@ -9,14 +9,18 @@ message Response {
     string value = 1;
 }
 
-message slaveRequest {
+message RepRequest {
 }
 
-message slaveResponse {
-    string value = 1;
+message RepResponse {
+    string optn = 1;
+    string key = 2;
+    string value = 3;
 }
 
 service Datastore {
    rpc put(Request) returns (Response) {}
    rpc get(Request) returns (Response) {}
+   rpc put(Request) returns (Response) {}
+   rpc rep(RepRequest) returns (stream RepOperation) {}
 }
