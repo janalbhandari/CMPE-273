@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+message Request {
+    string key = 1;
+    string value = 2;
+}
+
+message Response {
+    string value = 1;
+}
+
+message slaveRequest {
+}
+
+message slaveResponse {
+    string value = 1;
+}
+
+service Datastore {
+   rpc put(Request) returns (Response) {}
+   rpc get(Request) returns (Response) {}
+}
