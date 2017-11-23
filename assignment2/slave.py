@@ -3,7 +3,7 @@ import datastore_pb2
 import argparse
 import rocksdb
 
-PORT = 3000
+PORT = 5000
 
 
 class MySlaveReplicator():
