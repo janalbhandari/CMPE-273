@@ -21,6 +21,6 @@ message RepResponse {
 service Datastore {
    rpc put(Request) returns (Response) {}
    rpc get(Request) returns (Response) {}
-   rpc put(Request) returns (Response) {}
-   rpc rep(RepRequest) returns (stream RepOperation) {}
+   rpc delete(Request) returns (Response) {}
+   rpc replicate(RepRequest) returns (stream RepResponse) {}
 }
